@@ -1,6 +1,3 @@
-Here’s a clean version without icons or emojis:
-
----
 
 ## RedSky Dev
 
