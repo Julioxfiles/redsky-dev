@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Patterns\Adapter\RealExample;
+namespace App\Patterns\Adapter;
 
-use App\Patterns\Adapter\RealExample\PaymentInterface;
-use App\Patterns\Adapter\RealExample\PaypalPayment;
+use App\Patterns\Adapter\PaymentInterface;
+use App\Patterns\Adapter\PaypalPayment;
 
 class PaypalAdapter implements PaymentInterface {
 
@@ -17,6 +17,10 @@ class PaypalAdapter implements PaymentInterface {
     public function pay($amount): string {
         $this->gateway->makePayment($amount);
         return "The payment was done calling Paypal.";
+    }
+
+    public function getName(): string{
+        return "PaypalAdapter";
     }
 
 }

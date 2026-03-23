@@ -1,38 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
- <h3> The <span class="orange">Red</span>Sky Dev Channel. 
-   <span class="f18 primary">by: Julio Acosta:</span>
- </h3>
- <div class="terminal scroll-box">
-   <?php    
-      require_once __DIR__ . '/../../vendor/autoload.php';
+<?php    
+// PHP Area
+require_once __DIR__ . '/../../vendor/autoload.php';
 
-      use App\Patterns\Adapter\Computer;
-      use App\Patterns\Adapter\Lamp;
-      use App\Patterns\Adapter\Fan;
+use App\Patterns\Adapter\PaymentController;
+use App\Patterns\Adapter\CashPayment;
+//use App\Patterns\Adapter\PaypalPayment;
+//use App\Patterns\Adapter\StripePayment;
+//use App\Patterns\Adapter\PaypalAdapter;
+//use App\Patterns\Adapter\StripeAdapter;
+echo "<pre>";
 
-      $lamp = new Lamp();
-      echo $lamp->TwoProngPlug().br();
+// ChashPayment
+$cash = new CashPayment();
+$controller = new PaymentController($cash); // This would be called by a Router.
+print_r($controller->payAction(500));
 
-      $fan = new Fan();
-      echo $fan->TwoProngPlug().br();
 
-      $comp = new Computer();
-      echo $comp->ThreeProngPlug().br();
 
-      function br() { echo "<br/>"; }
 
-   ?>
- </div>
- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
-</body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+// StripeAdapter
+//$controller = new PaymentController(new StripePayment());
+//print_r($controller->payAction(200));
+br();
+
+// PaypalAdapter
+//$controller = new PaymentController(new PaypalPayment());
+//print_r($controller->payAction(150));
+
+function br() { echo "<br/>"; }
+
+?>

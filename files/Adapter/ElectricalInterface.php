@@ -5,6 +5,7 @@ namespace App\Patterns\Adapter;
 // This represents the outlets of the wall.
 interface ElectricalInterface {
         
-    public function twoProngPlug();
+    public function twoProngPlug(); // Dos patas
+    // All the appliances must accept only towProngPlugs.
 
 }

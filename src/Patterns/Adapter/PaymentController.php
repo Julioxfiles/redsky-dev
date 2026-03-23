@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Patterns\Adapter\RealExample;
+namespace App\Patterns\Adapter;
 
-use App\Patterns\Adapter\RealExample\PaymentInterface;
+use App\Patterns\Adapter\PaymentInterface;
 
 class PaymentController
 {
@@ -20,13 +20,13 @@ class PaymentController
         if ($this->payment->pay($amount)) {
             echo json_encode([
                 'success' => true,
-                'message' => "A $ {$amount} payment was made successfully."
-            ]);
+                'message' => "A $ {$amount} payment was made successfully by {$this->payment->getName()}."
+            ], JSON_PRETTY_PRINT);
         } else {
             echo json_encode([
                 'success' => false,
                 'message' => "Payment failed."
-            ]);
+            ], JSON_PRETTY_PRINT);
         }
     }
 }

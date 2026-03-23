@@ -1,10 +1,5 @@
 <?php
 
-namespace App\Patterns\Adapter\RealExample;
-use App\Patterns\Adapter\RealExample\StripeAdapter;
-use App\Patterns\Adapter\RealExample\PaypalPayment;
-
-
 // New gateway that already implements PaymentInterface
 $controller = new PaymentController(new StripePayment());
 $controller->payAction(200);
