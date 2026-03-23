@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Patterns\Adapter;
+namespace App\Patterns\Adapter\RealExample;
 
-use App\Patterns\Adapter\PaymentInterface;
-use App\Patterns\Adapter\StripePayment;
+use App\Patterns\Adapter\RealExample\PaymentInterface;
+use App\Patterns\Adapter\RealExample\StripePayment;
 
 class StripeAdapter implements PaymentInterface {
 
@@ -15,7 +15,7 @@ class StripeAdapter implements PaymentInterface {
     }
 
     public function pay($amount): string {
-        $this->gateway->doThePayment($amount);
+        $this->gateway->payNow($amount);
         return "The payment was done calling Stripe.";
     }
 

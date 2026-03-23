@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Patterns\Adapter;
+namespace App\Patterns\Adapter\RealExample;
 
-use App\Patterns\Adapter\PaymentInterface;
-use App\Patterns\Adapter\PaypalPayment;
+use App\Patterns\Adapter\RealExample\PaymentInterface;
+use App\Patterns\Adapter\RealExample\PaypalPayment;
 
 class PaypalAdapter implements PaymentInterface {
 

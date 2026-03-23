@@ -15,20 +15,7 @@
    <?php    
       require_once __DIR__ . '/../../vendor/autoload.php';
 
-      use App\Patterns\Adapter\Computer;
-      use App\Patterns\Adapter\Lamp;
-      use App\Patterns\Adapter\Fan;
-
-      $lamp = new Lamp();
-      echo $lamp->TwoProngPlug().br();
-
-      $fan = new Fan();
-      echo $fan->TwoProngPlug().br();
-
-      $comp = new Computer();
-      echo $comp->ThreeProngPlug().br();
-
-      function br() { echo "<br/>"; }
+      echo "Hi there, you will seen here all the output.";
 
    ?>
  </div>
