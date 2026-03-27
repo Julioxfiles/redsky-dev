@@ -2,7 +2,7 @@
 // PHP Area
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-// The Adapter Pattern
+title("The Adapter Pattern");
 use App\Patterns\Adapter\ElectricalInterface;
 use App\Patterns\Adapter\Lamp;
 use App\Patterns\Adapter\Fan;
@@ -24,18 +24,18 @@ function connect(ElectricalInterface $obj) {
     echo $obj->twoProngPlug().br();
 }
 
-// Adapter Pattern real example.
+title("The Adapter real example");
 use App\Patterns\Adapter\RealExample\PaymentController;
 use App\Patterns\Adapter\RealExample\CashPayment;
 use App\Patterns\Adapter\RealExample\PaypalPayment;
 use App\Patterns\Adapter\RealExample\StripePayment;
 use App\Patterns\Adapter\RealExample\PaypalAdapter;
 use App\Patterns\Adapter\RealExample\StripeAdapter;
-echo "<pre>";
 
 // ChashPayment
 $cash = new CashPayment();
 $controller = new PaymentController($cash); // This would be called by a Router.
+echo "<pre>";
 print_r($controller->payAction(500));
 
 // StripeAdapter
@@ -48,8 +48,9 @@ print_r($controller->payAction(200));
 $adapter= new PaypalAdapter(new PaypalPayment());
 $controller = new PaymentController($adapter);
 print_r($controller->payAction(150));
+echo "</pre>";
 
-// Decorator
+title("Decorator");
 use App\Patterns\Decorator\EmailNotifier;
 use App\Patterns\Decorator\SMSDecorator;
 use App\Patterns\Decorator\SlackDecorator;
@@ -62,6 +63,44 @@ $notifier = new SlackDecorator($notifier); // new AddMilk($coffe);
 $notifier = new SMSDecorator($notifier); // new AddSugar($coffe);
 $notifier->send("Hi world");
 
-function br() { echo "<br/>"; }
+title("Without Facade (Fachada)");
+use App\Patterns\Facade\AuthService;
+use App\Patterns\Facade\Database;
+use App\Patterns\Facade\Logger;
+use App\Patterns\Facade\LoginFacade;
+
+$auth = new AuthService();
+$db = new Database();
+$logger = new Logger();
+$db->connect();
+$auth->authenticate("Julio","1234");
+$logger->log("Usuario autenticado");
+
+title("With Facade (Fachada)");
+$facade = new LoginFacade();
+$facade->login("admin", "1234");
+
+
+/* RESUMEN:
+ Hides internal complexity
+ Reduces customer coupling with the system
+ Exposes a simple entry point.
+ 
+
+ Oculta la complejidad interna
+ Reduce el acoplamiento del cliente con el sistema
+ Expone un punto de entrada sencillo
+ 
+
+*/
+
+
+function br(int $times = 1) { 
+    for ($i = 1; $i <= $times; $i++) {
+        echo "<br/>";
+    }
+}
+
+function title(string $title, string $hn = "h2") { echo "<{$hn}>$title</{$hn}>"; }
 
 ?>
