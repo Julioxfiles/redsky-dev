@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdapterController;
 use App\Http\Controllers\DecoratorController;
 use App\Http\Controllers\FacadeController;
+use App\Http\Controllers\ProxyController;
 
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
@@ -22,3 +23,6 @@ Route::get('/decorator', [DecoratorController::class, 'index']);
 Route::get('/without-facade', [FacadeController::class, 'index']);
 // http://localhost/redsky-dev/public/with-facade
 Route::get('/with-facade', [FacadeController::class, 'withFacade']);
+
+// http://localhost/redsky-dev/public/proxy
+Route::get('/proxy', [ProxyController::class, 'index']);
