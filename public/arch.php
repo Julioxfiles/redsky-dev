@@ -23,7 +23,7 @@ $userService = new UserService($userRepository, $validator, $mailer);
 $controller = new UserController($userService);
 
 // Simulación de request
-$response = $controller->register([
+$response = $controller->store([
     'email' => 'test@test.com',
     'password' => '123456'
 ]);

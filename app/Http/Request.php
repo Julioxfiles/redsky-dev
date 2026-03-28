@@ -1,7 +1,7 @@
 <?php
 // src/Support/Request.php
 
-namespace App\Support;
+namespace App\Http;
 
 class Request
 {
@@ -33,7 +33,26 @@ class Request
     // 🔹 Obtener URI
     public function uri(): string
     {
-        return strtok($this->server['REQUEST_URI'], '?');
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+        // Remove base path
+        $basePath = '/redsky-dev/public';
+
+        if (str_starts_with($uri, $basePath)) {
+            $uri = substr($uri, strlen($basePath));
+        }
+
+        // Default
+        if ($uri === '') {
+            $uri = '/';
+        }
+
+        // Remove trailing slash
+        if ($uri !== '/') {
+            $uri = rtrim($uri, '/');
+        }
+
+        return $uri;
     }
 
     // 🔹 Obtener todos los datos

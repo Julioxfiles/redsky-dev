@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Http\Controllers;
 
-use App\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Services\UserService;
+use App\Http\Request;
 
-class UserController
+class UserController extends Controller
 {
     private UserService $userService;
 
@@ -19,10 +20,8 @@ class UserController
         return $this->userService->getAllUsers();
     }
 
-    public function store(): array
+    public function store(Request $request): array
     {
-        $request = Request::capture();
-
         return $this->userService->createUser($request->all());
     }
 }

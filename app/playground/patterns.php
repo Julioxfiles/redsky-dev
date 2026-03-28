@@ -38,7 +38,7 @@ use App\Patterns\Adapter\RealExample\StripeAdapter;
 // ChashPayment
 $cash = new CashPayment();
 $controller = new PaymentController($cash); // This would be called by a Router.
-echo "<pre>";
+//echo "<pre>";
 print_r($controller->payAction(500));
 
 // StripeAdapter
@@ -51,7 +51,7 @@ print_r($controller->payAction(200));
 $adapter= new PaypalAdapter(new PaypalPayment());
 $controller = new PaymentController($adapter);
 print_r($controller->payAction(150));
-echo "</pre>";
+//echo "</pre>";
 
 title("Decorator");
 use App\Patterns\Decorator\EmailNotifier;
@@ -109,10 +109,10 @@ require_once __DIR__ . '/../Support/Request.php';
 use App\Support\Request;
 
 // Crear request
-$request = Request::capture();
+//$request = Request::capture();
 
 // Debug básico
-echo "<pre>";
+//echo "<pre>";
 
 echo "Method: " . $request->method() . "\n";
 echo "URI: " . $request->uri() . "\n";
