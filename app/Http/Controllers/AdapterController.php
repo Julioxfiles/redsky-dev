@@ -11,12 +11,12 @@ use App\Patterns\Adapter\Computer;
 use App\Patterns\Adapter\ComputerAdapter;
 
 // Real Example:
-use App\Patterns\Adapter\RealExample\PaymentController;
-use App\Patterns\Adapter\RealExample\CashPayment;
-use App\Patterns\Adapter\RealExample\PaypalPayment;
-use App\Patterns\Adapter\RealExample\StripePayment;
-use App\Patterns\Adapter\RealExample\PaypalAdapter;
-use App\Patterns\Adapter\RealExample\StripeAdapter;
+use App\Services\Payments\PaymentController;
+use App\Services\Payments\CashPayment;
+use App\Services\Payments\PaypalPayment;
+use App\Services\Payments\StripePayment;
+use App\Services\Payments\PaypalAdapter;
+use App\Services\Payments\StripeAdapter;
 
 class AdapterController extends Controller
 {
@@ -43,7 +43,7 @@ class AdapterController extends Controller
 
     }
 
-    public function realExample()
+    public function index2()
     {
         title("The Adapter Pattern - Real example");
 

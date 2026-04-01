@@ -211,14 +211,13 @@ input[type="checkbox"], input[type="radio"] {
     width: auto; /* resets any forced width */
 }
 
-.orange { color: orangered; }
+.orange { background-color: orangered; color:white}
 
 .f14 { font-size:14px}
 .f16 { font-size:16px}
 .f18 { font-size:18px}
 .f20 { font-size:20px}
 .f22 { font-size:22px}
-
 
 .terminal { 
     background-color: black; 
@@ -237,3 +236,23 @@ input[type="checkbox"], input[type="radio"] {
     border: 1px solid #ccc; 
     padding: 10px;
  }
+
+.light {
+    background-color: #ffffff;
+    border:whitesmoke solid 1px;
+    color: #000000;
+}
+
+.dark {
+    background-color: #121212;
+    border:#2b2b3a solid 1px;
+    color: #ffffff;
+}
+
+.dark:focus {
+    background-color: #181818;
+}
+
+.light:focus {
+    background-color: white;
+}

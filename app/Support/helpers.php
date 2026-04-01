@@ -63,3 +63,14 @@ function br(int $times = 1) {
 function title(string $title, string $hn = "h2") { 
     echo "<{$hn}>$title</{$hn}>"; 
 }
+
+function view(string $name, array $data = [])
+{
+    extract($data);
+
+    require __DIR__ . "/../../resources/views/{$name}.php";
+}
+
+function asset($path) {
+    return '/redsky-dev/public/' . ltrim($path, '/');
+}

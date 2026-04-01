@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 // Bootstrap
 require_once __DIR__ . '/../app/bootstrap/env.php';
+require_once __DIR__ . '/../app/bootstrap/payments.php';
 require_once __DIR__ . '/../app/Support/helpers.php';
 
 use App\Http\Request;

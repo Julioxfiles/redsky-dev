@@ -20,7 +20,7 @@ class FacadeController {
 
     }
 
-    public function withFacade(){
+    public function index2(){
         title("With Facade (Fachada)");
         $facade = new LoginFacade();
         $facade->login("admin", "1234");
