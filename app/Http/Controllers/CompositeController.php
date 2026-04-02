@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\FileSystem\File;
 use App\FileSystem\Folder;
 
-// This could be calle FileController.
+// This could be called FileController.
 class CompositeController {
     public function index() {
         $root = new Folder('root');
