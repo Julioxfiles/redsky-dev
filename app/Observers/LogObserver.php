@@ -8,6 +8,6 @@ class LogObserver implements Observer
 {
     public function update(User $user): void
     {
-        // guardar log en sistema
+        echo "Registering log...\n  ";
     }
 }

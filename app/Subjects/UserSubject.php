@@ -7,20 +7,36 @@ use App\Models\User;
 
 class UserSubject
 {
-    protected array $observers = [];
+    protected array $observers = []; // Will be stored here.
 
     public function attach(Observer $observer): void
     {
-        // add observer
+        // Evitar duplicados
+        foreach ($this->observers as $obs) {
+            if ($obs === $observer) {
+                return;
+            }
+        }
+
+        $this->observers[] = $observer;
     }
 
     public function detach(Observer $observer): void
     {
-        // remove observer
+        foreach ($this->observers as $key => $obs) {
+            if ($obs === $observer) {
+                unset($this->observers[$key]);
+            }
+        }
+
+        // Reindexar el array (opcional pero recomendable)
+        $this->observers = array_values($this->observers);
     }
 
     public function notify(User $user): void
     {
-        // loop observers and call update()
+        foreach ($this->observers as $observer) {
+            $observer->update($user);
+        }
     }
 }

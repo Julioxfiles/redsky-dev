@@ -10,6 +10,7 @@ class Router
 {
     private array $routes = [];
 
+    /*
     public function add(string $method, string $uri, callable|array $action): void
     {
         $this->routes[] = [
@@ -18,7 +19,21 @@ class Router
             'action' => $action,
         ];
     }
+    */
 
+    public function add(string $method, string $uri, callable|array $action): RouteItem
+    {
+        $route = new RouteItem();
+        $route->method = strtoupper($method);
+        $route->uri = $uri;
+        $route->action = $action;
+
+        $this->routes[] = $route;
+
+        return $route;
+    }
+
+    /*
     public function dispatch(Request $request)
     {
         foreach ($this->routes as $route) {
@@ -31,6 +46,48 @@ class Router
         }
 
         throw new \Exception('Route not found: ' . $request->uri());
+    }
+    */
+    
+    public function dispatch(Request $request)
+    {
+        foreach ($this->routes as $route) {
+            if (
+                $route->method === $request->method() &&
+                $route->uri === $request->uri()
+            ) {
+                return $this->runRoute($route, $request);
+            }
+        }
+
+        throw new \Exception('Route not found: ' . $request->uri());
+    }
+
+    private function runRoute(RouteItem $route, Request $request)
+    {
+        $middlewares = $route->middlewares ?? [];
+
+        // Final destination (controller)
+        $core = function ($request) use ($route) {
+            //return $this->runAction($route['action'], $request);
+            return $this->runAction($route->action, $request);
+        };
+
+        // Build pipeline (reverse order)
+        $pipeline = array_reduce(
+            array_reverse($middlewares),
+            function ($next, $middlewareKey) {
+                return function ($request) use ($next, $middlewareKey) {
+                    $class = \App\Http\Middleware\MiddlewareRegistry::get($middlewareKey);
+                    $middleware = $this->resolve($class);
+
+                    return $middleware->handle($request, $next);
+                };
+            },
+            $core
+        );
+
+        return $pipeline($request);
     }
 
     private function runAction(callable|array $action, Request $request)

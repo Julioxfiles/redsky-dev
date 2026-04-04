@@ -8,6 +8,6 @@ class EmailObserver implements Observer
 {
     public function update(User $user): void
     {
-        // enviar email de bienvenida
+        echo "Sending mail...\n ";
     }
 }

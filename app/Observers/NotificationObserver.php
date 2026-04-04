@@ -8,6 +8,6 @@ class NotificationObserver implements Observer
 {
     public function update(User $user): void
     {
-        // enviar notificación
+        echo "Sending a notification to the Administrator...\n ";
     }
 }

@@ -30,6 +30,8 @@ require_once __DIR__ . '/../app/routes/api.php';
 // Output limpio
 //Response::json($response);
 // Ejecutar la ruta y obtener respuesta
+
+/*
 try {
     $response = $router->dispatch($request);
     /*
@@ -38,11 +40,18 @@ try {
         'data' => $response,
     ]);
     */
-} catch (\Exception $e) {
+//} catch (\Exception $e) {
     /*
     Response::json([
         'status' => 'error',
         'message' => $e->getMessage(),
     ], 500);
     */
+//}
+
+try {
+    $response = $router->dispatch($request);
+    echo $response; // THIS will show echoes from middleware too
+} catch (\Exception $e) {
+    echo $e->getMessage(); // show exception message
 }

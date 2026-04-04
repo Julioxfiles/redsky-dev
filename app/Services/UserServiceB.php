@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Subjects\UserSubject;
 use App\Models\User;
 
-class UserServiceObserver
+class UserServiceB
 {
     protected UserSubject $subject;
 

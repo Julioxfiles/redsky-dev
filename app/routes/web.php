@@ -13,6 +13,8 @@ use App\Http\Controllers\FactoryMethodController;
 use App\Http\Controllers\AbstractFactoryController;
 use App\Http\Controllers\CompositeController;
 use App\Http\Controllers\BuilderController;
+use App\Http\Controllers\ObserverController;
+use App\Http\Controllers\ChainController;
 
 Route::get('/home', [HomeController::class, 'index']);
 
@@ -66,9 +68,15 @@ Route::post('/factory-method', [FactoryMethodController::class, 'index']);
 Route::get('/abstrac-factory1', [AbstractFactoryController::class, 'lightTheme']);
 Route::get('/abstrac-factory2', [AbstractFactoryController::class, 'darkTheme']);
 
+// http://localhost/redsky-dev/public/builder
+Route::get('/builder', [BuilderController::class, 'index']);
+
 // http://localhost/redsky-dev/public/composite
 Route::get('/composite', [CompositeController::class, 'index']);
 
-// http://localhost/redsky-dev/public/builder
-Route::get('/builder', [BuilderController::class, 'index']);
+// http://localhost/redsky-dev/public/observer
+Route::post('/observer', [ObserverController::class, 'save']);
+
+Route::post('/chain', [ChainController::class, 'index'])
+    ->middleware(['auth.custom', 'log']);
 

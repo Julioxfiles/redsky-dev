@@ -2,27 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Request;
 use App\Subjects\UserSubject;
-use App\Services\UserServiceObserver;
+use App\Services\UserServiceB;
 use App\Observers\EmailObserver;
 use App\Observers\LogObserver;
 use App\Observers\NotificationObserver;
 
+// UserController
 class ObserverController {
 
-    public function index() {
-        $subject = new UserSubject();
+    public function save(Request $request) {
+        
+        $subject = new UserSubject(); // Asunto de usuario
 
         $subject->attach(new EmailObserver());
         $subject->attach(new LogObserver());
         $subject->attach(new NotificationObserver());
 
-        $userService = new UserServiceObserver($subject);
+        $userService = new UserServiceB($subject);
 
-        $userService->register([
-            'name' => 'Juan',
-            'email' => 'juan@email.com'
+        $result = $userService->register([
+            'name' => $request->input('name'),
+            'email' => $request->input('email')
         ]);
+        
     }
 }
 
