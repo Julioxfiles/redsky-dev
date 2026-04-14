@@ -2,6 +2,8 @@
 
 namespace App\Patterns\ChainOfResponsability;
 
+use App\Http\Request;
+
 abstract class Handler
 {
     protected ?Handler $next = null;
@@ -12,7 +14,7 @@ abstract class Handler
         return $handler;
     }
 
-    public function handle(array $request)
+    public function handle(Request $request)
     {
         if ($this->next) {
             return $this->next->handle($request);

@@ -2,6 +2,7 @@
 
 namespace App\Patterns\Singleton;
 use PDO;
+use Exception;
 
 class Database
 {
@@ -18,9 +19,16 @@ class Database
 
         $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
-        $this->connection = new PDO($dsn, $user, $pass, [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-        ]);
+        try {
+
+            $this->connection = new PDO($dsn, $user, $pass, [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            ]);
+            echo "Connected <br/>";
+        } catch (Exception $e) {
+            throw new Exception("Database connection failed: " . $e->getMessage());
+        }
+        
     }
 
     public static function getInstance(): Database

@@ -15,6 +15,8 @@ use App\Http\Controllers\CompositeController;
 use App\Http\Controllers\BuilderController;
 use App\Http\Controllers\ObserverController;
 use App\Http\Controllers\ChainController;
+use App\Http\Controllers\DependencyInjectionContainerController;
+use App\Http\Controllers\SingletonController;
 
 Route::get('/home', [HomeController::class, 'index']);
 
@@ -77,6 +79,14 @@ Route::get('/composite', [CompositeController::class, 'index']);
 // http://localhost/redsky-dev/public/observer
 Route::post('/observer', [ObserverController::class, 'save']);
 
+//Route::post('/chain', [ChainController::class, 'index']);
+    
+
 Route::post('/chain', [ChainController::class, 'index'])
     ->middleware(['auth.custom', 'log']);
 
+// http://localhost/redsky-dev/public/container
+Route::get('/container', [DependencyInjectionContainerController::class, 'index']);
+
+// http://localhost/redsky-dev/public/container
+Route::get('/singleton', [SingletonController::class, 'index']);

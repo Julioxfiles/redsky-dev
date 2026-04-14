@@ -10,9 +10,7 @@ use App\Patterns\ChainOfResponsability\Controller;
 class ChainController {
 
     public function index(Request $request){
-        // Request - Solicitud
-        $user = $request->input('user');
-
+                
         $auth = new AuthMiddleware();
         $log = new LogMiddleware();
         $controller = new Controller();
@@ -21,7 +19,8 @@ class ChainController {
         $auth->setNext($log)->setNext($controller);
                 
         // Execution - Ejecución
-        $response = $auth->handle($user);
+        // Request - Solicitud
+        $response = $auth->handle($request);
         echo $response;
     }
 

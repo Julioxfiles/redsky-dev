@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Patterns\DependencyInjectionContainer;
+namespace App\Http\Controllers;
 
 use App\Patterns\DependencyInjectionContainer\Container;
 use App\Patterns\DependencyInjectionContainer\UserController;
 
-class DepenInjectContainerController {
+class DependencyInjectionContainerController {
 
     public function index() {
 
